@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        trackingId: `UA-121045448-1`,
       },
     },
     `gatsby-plugin-sitemap`,
@@ -78,6 +78,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-twitter`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
