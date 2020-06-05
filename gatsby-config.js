@@ -18,12 +18,12 @@ module.exports = {
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
       options: {
-        blogPath: `/archive`,
+        //blogPath: `/blog`,
         showLineNumbers: false,
         navigation: [
           {
             title: `Archive`,
-            slug: `/archive`,
+            slug: `/blog`,
           },
           {
             title: `About`,
