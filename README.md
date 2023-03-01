@@ -77,19 +77,21 @@ import {Giscus} from "@giscus/react";
   </Layout>
 ```
 
-### [gatsby-plugin-google-analytics](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-google-analytics)
+### [gatsby-plugin-google-gtag](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-google-gtag)
 
 ```shell
-$ npm install gatsby-plugin-google-analytics
+$ npm install gatsby-plugin-google-gtag
 ```
 
 `gatsby-config.ts`
 ```ts
 plugins: [
   {
-    resolve: `gatsby-plugin-google-analytics`,
+    resolve: `gatsby-plugin-google-gtag`,
     options: {
-      trackingId: `G-C5Y4PDGXSR`,
+      trackingIds: [
+        "G-C5Y4PDGXSR", // Google Analytics / GA
+      ],
     },
   },
 ]

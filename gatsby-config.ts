@@ -52,9 +52,11 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: `G-C5Y4PDGXSR`,
+        trackingIds: [
+          "G-C5Y4PDGXSR", // Google Analytics / GA
+        ],
       },
     },
     {
