@@ -51,6 +51,10 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    // gatsby twitter
+    {
+      resolve: `gatsby-plugin-twitter`,
+    },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
