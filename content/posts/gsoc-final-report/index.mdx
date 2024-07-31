@@ -1,7 +1,7 @@
 ---
-title: reporte final
+title: GSoC Final Report
 date: 2020-08-30
-tags: 
+tags:
   - GSoC
   - CHAOSS
   - Prosoul
@@ -9,6 +9,8 @@ tags:
 slug: "gsoc-final-report"
 banner: ./gsoc.png
 ---
+
+## reporte final de gsoc
 
 #### Final Report | vchrombie | CHAOSS | GSoC 2020 ☀️
 
@@ -54,17 +56,17 @@ The main aim of the project is to design an approach to shape the GrimoireLab da
 - **Kibiter**: Kibiter is a soft-fork of **Kibana**, which is an open-source analytics and visualization platform based on Elasticsearch. You can use Kibana to explore your Elasticsearch data and then build beautiful visualizations and dashboards.
 - **Index** (plural form is indexes/indices): An optimized collection of JSON documents. Each document is a collection of fields, the key-value pairs that contain your data. [Link](https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html#index)
 - **Enrichers**: Enrichers are scripts which enrich the raw Perceval (extracts the useful data) and stores it in the Elasticsearch as indexes.
-- **Pilot Study**: It is progressive testing of the approach on the projects of an organization to estimate the results. 
+- **Pilot Study**: It is progressive testing of the approach on the projects of an organization to estimate the results.
 - **Assessment**: It is an evaluation of the projects using a quality model.
 
 ##### Completed Work
 
 1. Worked on five enrichers (related to quality models) and integrated them with the GrimoireLab toolchain. The enrichers are planned as per the popular datasources.
-	- gitlabqm
-	- gitqm
-	- pipermailqm
-	- meetupqm
-	- githubqm
+   - gitlabqm
+   - gitqm
+   - pipermailqm
+   - meetupqm
+   - githubqm
 2. Made the results dashboards to visualize the assessment results. I made another dashboard to analyze the enriched data. Some of the dashboards were derived from the CROSSMINER project.
 3. Worked on adding the initial tests for the enrichers.
 4. Performed three pilot studies on different organizations (amFOSS, GitLab.org, CHAOSS). The main reason behind these pilot studies is to test the approach on various projects with different sizes.
@@ -91,11 +93,13 @@ I have performed a few test assessments using the enriched data and demo quality
 ![ed2](./images/ed2.png "Dashboard which shows the quantitative data of the metrics and evolutionary data of the projects")
 
 **PRs**
+
 - [chaoss/grimoirelab-elk#892](https://github.com/chaoss/grimoirelab-elk/pull/892): [qm-elk] Add support for QM data enrichment
 - [chaoss/grimoirelab-elk#902](https://github.com/chaoss/grimoirelab-elk/pull/902): [qm-elk] Add support for QM data enrichment
 - [chaoss/grimoirelab-sirmordred#476](https://github.com/chaoss/grimoirelab-sirmordred/pull/476): [docs] Update Getting-Started.md result image
 
 **Issues**
+
 - [vchrombie/gsoc#5](https://github.com/vchrombie/gsoc/issues/5): [tasks] periodo de codificación 1
 - [vchrombie/gsoc#6](https://github.com/vchrombie/gsoc/issues/6): [enricher] Implement QM Enrichers
 - [vchrombie/gsoc#7](https://github.com/vchrombie/gsoc/issues/7): [es-index] plan the structure for index data
@@ -115,9 +119,11 @@ I made the results dashboard. The assessment results are stored as indexes. I to
 We discussed the metrics of the enrichers, and I completed implementing them in the respective enrichers. (gitlabqm, pipermailqm, and meetup). I worked on adding tests to the existing enrichers.
 
 **PRs**
+
 - [chaoss/grimoirelab-elk#926](https://github.com/chaoss/grimoirelab-elk/pull/926): [qm-elk] Add support for QM data enrichment
 
 **Issues**
+
 - [vchrombie/gsoc#12](https://github.com/vchrombie/gsoc/issues/12): [tasks] periodo de codificación 2
 - [vchrombie/gsoc#6](https://github.com/vchrombie/gsoc/issues/6): [enricher] Implement QM Enrichers
 - [vchrombie/gsoc#8](https://github.com/vchrombie/gsoc/issues/8): [metrics] gitlab raw data
@@ -160,6 +166,7 @@ From this study, we found a limitation to the approach. The results may not be a
 Towards the end, I worked on adding the documentation of the project. One correct place was the Prosoul repository and also the qm folder in the GrimoireLab-ELK. I revamped the Prosoul with GrimoireLab doc and updated it with the latest workflow of the project.
 
 **PRs**
+
 - [Bitergia/prosoul#216](https://github.com/Bitergia/prosoul/pull/216): [doc] Update prosoul-grimoirelab.md
 - [Bitergia/prosoul#215](https://github.com/Bitergia/prosoul/pull/215): [docker] Update docker-compose.yml
 - [Bitergia/prosoul#213](https://github.com/Bitergia/prosoul/pull/213): [doc] Update the repo with the latest images
@@ -168,9 +175,10 @@ Towards the end, I worked on adding the documentation of the project. One correc
 - [chaoss/grimoirelab-sigils#469](https://github.com/chaoss/grimoirelab-sigils/pull/469): Update documentation about Kidash
 
 **Issues**
+
 - [Bitergia/prosoul#214](https://github.com/Bitergia/prosoul/issues/214): [docker] docker-compose file seems outdated
-- [vchrombie/gsoc#17](https://github.com/vchrombie/gsoc/issues/17): [tasks] periodo de codificación 3 
-- [vchrombie/gsoc#13](https://github.com/vchrombie/gsoc/issues/13): [assessments] perform assessments on various projects of different organizations 
+- [vchrombie/gsoc#17](https://github.com/vchrombie/gsoc/issues/17): [tasks] periodo de codificación 3
+- [vchrombie/gsoc#13](https://github.com/vchrombie/gsoc/issues/13): [assessments] perform assessments on various projects of different organizations
 - [vchrombie/gsoc#19](https://github.com/vchrombie/gsoc/issues/19): [metrics] github raw data
 - [vchrombie/gsoc#6](https://github.com/vchrombie/gsoc/issues/6): [enricher] Implement QM Enrichers
 - [vchrombie/gsoc#20](https://github.com/vchrombie/gsoc/issues/20): Project Documentation
