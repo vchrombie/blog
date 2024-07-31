@@ -75,18 +75,17 @@ const Post: React.FC<React.PropsWithChildren<PageProps<MBPostProps>>> = ({ data:
 
     <Giscus
       id="comments"
-      repo="vchrombie/comments"
-      repoId="MDEwOlJlcG9zaXRvcnkyNjI1NjQ5ODM="
+      repo="vchrombie/blog"
+      repoId="R_kgDOJEKKWA"
       category="Comments"
-      categoryId="DIC_kwDOD6Zsd84CBE_4"
+      categoryId="DIC_kwDOJEKKWM4ChTzx"
       mapping="pathname"
       term="Welcome to @giscus/react component!"
       reactionsEnabled="1"
       emitMetadata="1"
-      inputPosition="top"
+      inputPosition="bottom"
       theme={theme}
       lang="en"
-      loading="lazy"
     />
     
     <PostFooter post={post} />
