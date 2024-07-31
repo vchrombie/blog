@@ -17,14 +17,14 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@giscus/react": "^2.2.6",
+    "@giscus/react": "^2.4.0",
     "@lekoarts/gatsby-theme-minimal-blog": "^6.0.5",
     "gatsby": "^5.5.0",
     "gatsby-plugin-feed": "^5.5.0",
-    "gatsby-plugin-google-gtag": "^5.7.0",
+    "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-manifest": "^5.5.0",
-    "gatsby-plugin-sitemap": "^6.5.0",
-    "gatsby-plugin-twitter": "^5.10.0",
+    "gatsby-plugin-sitemap": "^6.13.1",
+    "gatsby-plugin-twitter": "^5.13.1",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.30",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
