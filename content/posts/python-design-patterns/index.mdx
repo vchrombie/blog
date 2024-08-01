@@ -1,0 +1,229 @@
+---
+title: Design Patterns in Python
+date: 2024-07-27
+tags: 
+  - python
+  - design-patterns
+slug: "python-design-patterns"
+---
+
+Design patterns are reusable solutions to common problems in software design. They are like blueprints that you can customize to solve particular design problems in your code. In this blog post, we'll cover some of the most common design patterns in Python: Singleton, Composite, Factory, and Proxy. Let's dive into each one with simple explanations and examples.
+
+## Singleton Design Pattern
+
+The Singleton Design Pattern ensures that a class has only one instance and provides a global point of access to it. This is useful when exactly one object is needed to coordinate actions across a system.
+
+```python
+from abc import ABC, abstractmethod
+
+
+class IPerson(ABC):
+    @abstractmethod
+    def person_type(self):
+        # Interface method
+        pass
+
+
+class Person(IPerson):
+
+    __instance = None
+
+    def get_instance():
+        if Person.__instance is None:
+            Person("Default", 0)
+        return Person.__instance
+
+    def __init__(self, name, age):
+        if Person.__instance is not None:
+            raise Exception("This class is a singleton!")
+        else:
+            self.name = name
+            self.age = age
+            Person.__instance = self
+
+    @staticmethod
+    def person_type():
+        print(f"Person Name: {Person.__instance.name}")
+        print(f"Person Age: {Person.__instance.age}")
+
+
+p1 = Person("John", 25)
+print(p1)
+p1.person_type()
+# <__main__.Person object at 0x100eb5ca0>
+# Person Name: John
+# Person Age: 25
+
+p3 = Person.get_instance()
+print(p3)
+p3.person_type()
+# <__main__.Person object at 0x100eb5ca0>
+# Person Name: John
+# Person Age: 25
+
+p2 = Person("Jack", 30)
+# Exception: This class is a singleton!
+```
+
+## Composite Design Pattern
+
+The Composite Design Pattern allows you to compose objects into tree structures to represent part-whole hierarchies. It lets clients treat individual objects and compositions of objects uniformly.
+
+```python
+from abc import ABC, abstractmethod, abstractstaticmethod
+
+
+class IDepartment(ABC):
+    @abstractmethod
+    def __init__(self, employees):
+        # Interface method
+        pass
+
+    @abstractstaticmethod
+    def get_name():
+        # Interface method
+        pass
+
+
+class Accounting(IDepartment):
+    def __init__(self, employees):
+        self.employees = employees
+
+    def get_name(self):
+        print("Accounting {}".format(self.employees))
+
+
+class Development(IDepartment):
+    def __init__(self, employees):
+        self.employees = employees
+
+    def get_name(self):
+        print("Development {}".format(self.employees))
+
+
+class ParentDepartment(IDepartment):
+    def __init__(self, employees):
+        self.employees = employees
+        self.base_employees = employees
+        self.departments = []
+
+    def add_department(self, department):
+        self.departments.append(department)
+        self.employees += department.employees
+
+    def get_name(self):
+        print("Parent Department {}".format(self.base_employees))
+        for department in self.departments:
+            department.get_name()
+        print("Total Employees {}".format(self.employees))
+
+
+d1 = Accounting(200)
+d2 = Development(300)
+d3 = ParentDepartment(50)
+d3.add_department(d1)
+d3.add_department(d2)
+
+d3.get_name()
+# Parent Department 50
+# Accounting 200
+# Development 300
+# Total Employees: 550
+```
+
+## Factory Design Pattern
+
+The Factory Method Pattern defines an interface for creating an object, but lets subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+
+```python
+from abc import ABC, abstractmethod
+
+
+class IPerson(ABC):
+    @abstractmethod
+    def person_type(self):
+        # Interface method
+        pass
+
+
+# p = IPerson()
+# TypeError: Can't instantiate abstract class IPerson 
+# with abstract method person_type
+
+class Teacher(IPerson):
+    def person_type(self):
+        return "Teacher"
+
+
+class Student(IPerson):
+    def person_type(self):
+        return "Student"
+
+
+t = Teacher()
+print(t.person_type())  # Teacher
+
+s = Student()
+print(s.person_type())  # Student
+
+
+class PersonFactory:
+
+    @staticmethod
+    def get_person(person_type):
+        if person_type == "Teacher":
+            return Teacher()
+        if person_type == "Student":
+            return Student()
+        raise TypeError("Invalid person type")
+
+
+person_type = input("Enter person type (Teacher/Student): ")
+try:
+    person = PersonFactory.get_person(person_type)
+except TypeError as e:
+    print(e)
+else:
+    print(person.person_type())
+```
+
+## Proxy Design Pattern
+
+The Proxy Design Pattern provides a surrogate or placeholder for another object to control access to it. The proxy object acts as an intermediary between the client and the real object, performing various tasks such as lazy initialization, access control, logging, etc.
+
+```python
+from abc import ABC, abstractmethod
+
+
+class IPerson(ABC):
+    @abstractmethod
+    def person_type(self):
+        # Interface method
+        pass
+
+
+class Person(IPerson):
+    def person_type(self):
+        return "Person"
+
+
+class ProxyPerson(IPerson):
+    def __init__(self):
+        self.person = Person()
+
+    def person_type(self):
+        return "Proxy " + self.person.person_type()
+
+
+p1 = Person()
+print(p1.person_type())
+# Person
+
+p2 = ProxyPerson()
+print(p2.person_type())
+# Proxy Person
+```
+
+## Conclusion
+
+These design patterns provide a solid foundation for solving common design problems. By understanding and using these patterns, you can create more flexible, reusable, and maintainable code.
