@@ -1,0 +1,49 @@
+---
+title: Understanding Cache Hydration
+date: 2024-07-20
+tags:
+  - system-design
+  - caching
+  - database
+slug: "cache-hydration"
+---
+
+Imagine you have a favorite book. Instead of looking for it every time you want to read, you keep it on your bedside table for easy access. This is similar to what a "cache" does in computing. It stores frequently accessed data so it can be retrieved quickly without having to go through the entire process of finding it again.
+
+<blockquote class="twitter-tweet"><p lang="in" dir="ltr">RAM Vs Cache 😂👇🏻 <a href="https://t.co/B1nAOisaED">pic.twitter.com/B1nAOisaED</a></p>&mdash; Ryan Els (@RyanEls4) <a href="https://twitter.com/RyanEls4/status/1810694122480750976?ref_src=twsrc%5Etfw">July 9, 2024</a></blockquote>
+
+## What is Cache Hydration?
+
+Cache hydration is the process of filling a cache with data. Think of it as preparing your bedside table with all the books you might need for the week. When your computer or app loads, it hydrates the cache by loading essential data into it. This makes the system faster and more efficient because it doesn't have to go back to the original data source every time it needs information.
+
+## How Does Cache Hydration Work?
+
+### Step 1: Fetching Data
+
+When an application starts, it fetches data from the main source, such as a database or an external API. For instance, a weather app might retrieve the latest weather information from a weather service.
+
+### Step 2: Storing Data in Cache
+
+This fetched data is then stored in the cache. The next time the app needs this information, it can get it from the cache instead of going back to the weather service.
+
+### Step 3: Using Cached Data
+
+Whenever the app needs to display the weather, it checks the cache first. If the data is there and still valid (not too old), it uses this cached data, making the process much faster.
+
+### Step 4: Refreshing the Cache
+
+Over time, cached data can become outdated. To keep the cache useful, it needs to be refreshed periodically. This means fetching new data from the original source and updating the cache. This process ensures that the data remains accurate and up-to-date.
+
+## Choose the Right Hydration Policy
+
+When the entire database cannot fit in the cache, it's crucial to adopt a smart caching strategy to ensure the most relevant and frequently accessed data is cached. Here are some effective cache hydration policies:
+
+- **Least Recently Used (LRU)**: Evicts the least recently used items to make room for new data.
+- **Most Frequently Used (MFU)**: Retains items that are accessed most frequently, evicting less accessed data first.
+- **Priority-Based Caching**: Assigns priorities to different data types and caches high-priority data first.
+- **Segmentation**: Divides the cache into segments for different data types, each with its own policy.
+- **Adaptive Replacement Cache (ARC)**: Maintains lists for recently and frequently accessed items, balancing between them dynamically.
+
+## Conclusion
+
+Cache hydration is a crucial technique in modern computing, helping applications run faster and more efficiently. By understanding how it works, you can appreciate the technology behind the smooth experiences you have with your favorite apps and websites. It's all about having the right data at the right place, ready to go when you need it.
