@@ -1,0 +1,844 @@
+---
+title: Linux Commands Notes
+date: 2024-08-06
+tags:
+  - linux
+  - job-search
+  - bash
+  - notes
+slug: "linux-commands-notes"
+---
+
+Linux is a free and open source operating system based on Unix. The difference between Linux and Unix is that Unix is a proprietary operating system, while Linux is open source.
+
+- **kernel**: the core of the operating system, manages the hardware resources of the computer
+
+- **shell**: a command line interface that allows users to interact with the operating system (bash, zsh, ksh)
+
+- **distribution**: a version of the Linux operating system that includes the Linux kernel and additional software
+
+## Basics
+
+- outputs the string that is passed to it as an argument
+
+```console
+$ echo "Hello World"
+Hello World
+```
+
+- outputs the hostname of the system
+
+```console
+$ hostname
+w4nd
+```
+
+- outputs the username of the current user
+
+```console
+$ whoami
+p0tt3r
+```
+
+- outputs the present working directory
+
+```console
+$ pwd
+/Users/p0tt3r/dev
+```
+
+- **relative path**: relative to the present working directory, start from current directory
+
+- **absolute path**: relative to the root directory, start from root directory
+
+- creates a new directory
+
+```console
+$ mkdir test
+```
+
+- change the current directory to test
+
+```console
+$ cd test
+```
+
+- creates a new file
+
+```console
+$ touch file.txt
+```
+
+- edit an existing file or create a new file
+
+```console
+$ nano file.txt
+```
+
+- display the contents of a file
+
+```console
+$ cat file.txt
+Hi
+```
+
+- copy a file, copy contents of file.txt to file2.txt
+
+```console
+$ cp file.txt file2.txt
+```
+
+- rename a file, move the contents of file2.txt to file3.txt
+
+```console
+$ mv file2.txt file3.txt
+```
+
+- search for a string or pattern in a file
+
+```console
+$ grep pattern files
+
+$ grep "Hi" file.txt
+```
+
+- recursively search for a string in a directory
+
+```console
+$ grep -r pattern dir
+
+$ grep -r "Hi" test
+```
+
+- search for multiple strings in a file
+
+```console
+$ egrep "Lorem|dolor|id" file3.txt
+```
+
+- read a file without using the cat command
+
+```console
+$ less file3.txt
+$ more file3.txt
+```
+
+advantage of using less or more is that it allows you to scroll through the file
+
+- list all files in the current directory
+
+```console
+$ ls
+file.txt file3.txt
+```
+
+- list all files in the current directory with permissions
+
+```console
+$ ll
+$ ls -l
+total 16
+-rw-r--r--  1 p0tt3r  staff    3 Aug  5 14:31 file.txt
+-rw-r--r--  1 p0tt3r  staff  446 Aug  5 15:08 file3.txt
+```
+
+`getfacl` command is used to get file access control lists
+
+- displays the IP address of the system
+
+```console
+$ ip addr show
+$ ifconfig
+```
+
+- displays the first 5 lines of a file and the last 5 lines of a file
+
+```console
+$ head -5 file3.txt
+$ tail -5 file3.txt
+```
+
+- list all files including hidden files
+
+```console
+$ la
+$ ls -a
+```
+
+- displays the history of commands that have been executed
+
+```console
+$ history
+```
+
+- root is the admin/superuser, has all the permissions
+
+```
+/root - home directory of the root user
+/ - root directory
+```
+
+- **inode (index node)**: a data structure that stores information about a file or directory except its name and actual data, every file has a unique identifier number
+
+```console
+$ ls -li
+total 16
+115609748 -rw-r--r--  1 p0tt3r  staff    3 Aug  5 14:31 file.txt
+115610387 -rw-r--r--  1 p0tt3r  staff  446 Aug  5 15:08 file3.txt
+```
+
+- find a file in the filesystem
+
+```console
+$ find dir -name file
+
+$ find . -name file.txt
+./file.txt
+```
+
+```console
+$ locate file.txt
+```
+
+- count the number of words and lines in a file
+
+```console
+$ wc file3.txt
+       6      69     446 file3.txt
+```
+
+- **pipe (|)**: takes the output of one command and uses it as input for another command
+
+```console
+$ ls -l | grep file3
+-rw-r--r--  1 p0tt3r  staff  446 Aug  5 15:08 file3.txt
+```
+
+- check the difference between two files
+
+```console
+$ diff file.txt file3.txt
+```
+
+- remove a file
+
+```console
+$ rm file.txt
+```
+
+- remove a directory
+
+```console
+$ rmdir test
+```
+
+- permanently remove a file (unable to recover)
+
+```console
+$ shred -u file.txt
+```
+
+- check system architecture and hardware information
+
+```console
+$ lscpu
+```
+
+- combine two files
+
+```console
+$ cat file.txt file3.txt > file4.txt
+```
+
+- check the type of the file
+
+```console
+$ file file3.txt
+file3.txt: ASCII text
+```
+
+- sort the contents of a file
+
+```console
+$ cat file3.txt| sort
+$ sort file3.txt
+```
+
+- access linux server from another linux server: putty, ssh
+
+- create a tar archive
+
+```console
+$ tar -cvf archive.tar file3.txt
+```
+
+- extract a tar archive
+
+```console
+$ tar -xvf archive.tar
+```
+
+- compress a file
+
+```console
+$ gzip file3.txt
+```
+
+- decompress a file
+
+```console
+$ gunzip file3.txt.gz
+```
+
+- compress a directory
+
+```console
+$ tar -zcvf archive.tar.gz test
+```
+
+- decompress a directory
+
+```console
+$ tar -zxvf archive.tar.gz
+```
+
+- system and kernel information
+
+```console
+$ uname -a
+Darwin w4nd 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:19:05 PDT 2024; root:xnu-10063.121.3~5/RELEASE_ARM64_T8112 arm64
+```
+
+- check the system uptime
+
+```console
+$ uptime
+0:54  up 2 days,  5:06, 2 users, load averages: 1.24 1.78 2.03
+```
+
+- set environment variables
+
+```console
+$ export VAR=value
+```
+
+- check the environment variables
+
+```
+$ env
+$ printenv
+```
+
+- package manager: command line tool that allows you to install, update, and remove software packages (apt-get, yum, dnf)
+
+```console
+# apt-get is a package manager for debian based systems
+
+# install and remove a package
+$ apt-get install package
+$ apt-get remove package
+
+# update package list
+$ apt-get update
+
+# upgrade all packages
+$ apt-get upgrade
+```
+
+## File Permissions
+
+- different types of permissions
+
+  - read (r) : 4
+  - write (w) : 2
+  - execute (x) : 1
+
+- different types of users
+
+  - user owner (u)
+  - user group (g)
+  - others (o)
+  - all (a)
+
+- check the permissions of a file
+
+```console
+$ ls -l file3.txt
+-rw-r--r--  1 p0tt3r  staff  446 Aug  5 15:08 file3.txt
+```
+
+```console
+$ ls -l
+drwxr-xr-x  2 p0tt3r  staff   64 Aug  6 00:57 dir
+-rw-r--r--  1 p0tt3r  staff    0 Aug  5 17:52 file.txt
+
+# File type: -
+# Permission settings: rw-r--r--
+# User owner: p0tt3r
+# Group owner: staff
+# File size: 0
+# Last modification time: Aug 5 17:52
+# Filename: file.txt
+```
+
+- when permissions and users are represented by letters, that is called symbolic mode
+
+- when permissions and users are represented by numbers, that is called octal mode
+
+- `rwxr--r–` is a set of three different permissions
+
+  - `rwx`: user owner has read, write and execute permissions
+  - `r--`: user group has read permissions
+  - `r--`: others have read permissions
+
+- `rwxr--r–` is represented by `744` in octal mode
+
+  - `rwx` = 4 + 2 + 1 = 7
+  - `r--` = 4 + 0 + 0 = 4
+  - `r--` = 4 + 0 + 0 = 4
+
+- change the permissions of a file
+
+```console
+$ chmod 777 file3.txt
+
+$ ls -l file3.txt
+-rwxrwxrwx  1 p0tt3r  staff  446 Aug  5 15:08 file3.txt
+```
+
+- change the owner of a file
+
+```console
+$ chown user file3.txt
+```
+
+- change the group of a file
+
+```console
+$ chgrp group file3.txt
+```
+
+- create a symbolic link (`l` denotes a symbolic link)
+
+```console
+$ ln -s file3.txt file4.txt
+
+$ ls -l
+lrwxr-xr-x  1 p0tt3r  staff    9 Aug  6 01:19 file4.txt -> file3.txt
+```
+
+- **symbolic link** or symlink is a pointer to a file or directory, can be used to create shortcuts
+
+  - A **hard link** is a direct reference to the inode of a file. Multiple hard links to a file share the same inode and, therefore, the same data. Deleting the original file does not affect the hard link.
+
+  ```console
+  $ ln file3.txt file5.txt
+  ```
+
+  - A **soft link** is a pointer to a file or directory. It is a separate file that contains a path to the original file. Deleting the original file makes the soft link invalid, resulting in a broken link.
+
+  ```console
+  $ ln -s file3.txt file6.txt
+  ```
+
+- setuid/setguid permissions are used to run a program with the permissions of the owner of the file (`s`/`S` denotes setuid/setguid)
+  - setuid: set user id
+  - setguid: set group id
+
+```console
+$ chmod u+s file3.txt
+$ chmod g+s file3.txt
+```
+
+- sticky bit is used to restrict the deletion of a file (`t`/`T` denotes sticky bit)
+
+```console
+$ chmod +t file3.txt
+```
+
+## Redirection
+
+- write something to a file, redirect the output of a command to a file
+
+```console
+$ echo "Hi" > file.txt
+$ cat file3.txt > file4.txt
+$ ls -l > files.txt
+```
+
+- append something to a file
+
+```console
+$ echo "Hello" >> file.txt
+$ cat file3.txt >> file4.txt
+$ ls -l >> files.txt
+```
+
+- redirect an error to a file
+
+```console
+$ cat abc
+cat: abc: No such file or directory
+
+$ cat abc 2> error.txt
+```
+
+- redirect both output and error to a file
+
+```console
+$ cat abc 2>&1 output.txt
+```
+
+## Automation
+
+- **cronjob**: automate any task or script
+
+- **cron**: a daemon that runs in the background and executes scheduled tasks
+
+- **crontab**: a file that contains the cronjobs
+
+- create a cronjob
+
+```console
+$ crontab -e
+```
+
+- check the cronjobs that are running
+
+```console
+$ crontab -l
+```
+
+- `* * * * *` represents minute (0-59) hour (0-23) day (1-31) month (1-12) day_of_week (0-6)
+
+- run a script every minute
+
+```console
+* * * * * echo "1 minute"
+```
+
+- run a script every hour
+
+```console
+0 * * * * echo "1 hour"
+```
+
+- run a script every day
+
+```console
+0 0 * * * echo "1 day"
+```
+
+- run a script every day at 12:30
+
+```console
+30 12 * * * echo "12:30"
+```
+
+- debug a cronjob
+  - check system time
+  - crontab entry
+  - check /var/log/messages
+
+## Services
+
+- **daemon**: a background process that runs continuously, eg. apache, mysql, httpd
+
+- check the status of a service
+
+```console
+$ systemctl status sshd
+```
+
+- start/stop/restart a service
+
+```console
+$ systemctl start sshd
+$ systemctl stop sshd
+$ systemctl restart sshd
+```
+
+- enable/disable a service
+
+```console
+$ systemctl enable sshd
+$ systemctl disable sshd
+```
+
+- `httpd` is the daemon that runs on the server which helps in establishing a connection over HTTP/HTTPS
+
+### System Monitoring
+
+- check free disk space
+
+```console
+$ df -ah
+
+# -a for all filesystems, -h for human readable format
+```
+
+- check disk usage, size of the directory
+
+```console
+$ du -sh /home
+
+# -s for summary, -h for human readable format
+```
+
+- show free memory
+
+```console
+$ free -h
+```
+
+- check CPU usage
+
+```console
+$ top
+$ htop
+$ btop
+```
+
+## Process
+
+- **process**: a running instance of a program
+
+- **PID (Process ID)**: unique identifier for each process
+
+- check the process that is running
+
+```console
+$ ps aux
+
+$ ps aux | grep process_name
+```
+
+- kill a process
+
+```console
+$ kill <PID>
+```
+
+| Signal  | Value | Action    | Command          |
+| ------- | ----- | --------- | ---------------- |
+| SIGTERM | 15    | Terminate | `kill -15 <PID>` |
+| SIGKILL | 9     | Kill      | `kill -9 <PID>`  |
+| SIGINT  | 2     | Interrupt | `kill -2 <PID>`  |
+
+`SIGTERM`: signal terminate, the process can catch the signal and perform cleanup operations before terminating, gracefully kills the process, can be caught and ignored and does not kill child processes
+
+```console
+$ sleep 100 &
+[1] 27093
+
+$ kill -15 27093
+[1]  + 27093 terminated  sleep 100
+```
+
+`SIGKILL`: signal kill, the process cannot catch the signal, the process is killed immediately, inevitable and kills child processes
+
+```console
+$ sleep 100 &
+[1] 27038
+
+$ kill -9 27038
+[1]  + 27038 killed     sleep 100
+```
+
+`SIGINT`: signal interrupt (keyboard interrupt), the process can catch the signal and perform cleanup operations before terminating
+
+```console
+$ sleep 100 &
+[1] 26982
+
+$ kill -2 26982
+[1]  + 26982 interrupt  sleep 100
+```
+
+- kill all processes that match a name
+
+```console
+$ killall process_name
+```
+
+## Networking
+
+- check the IP address of the system
+
+```console
+$ ip addr show
+$ ifconfig
+```
+
+- check if a IP/server is accessible
+
+```console
+$ ping www.google.com
+PING www.google.com (142.250.72.100): 56 data bytes
+64 bytes from 142.250.72.100: icmp_seq=0 ttl=60 time=41.297 ms
+^C
+--- www.google.com ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 41.297/41.297/41.297/0.000 ms
+
+# 0.0% packet loss means the server is accessible
+```
+
+```console
+$ telnet www.google.com 80
+Trying 142.250.80.4...
+Connected to www.google.com.
+```
+
+- check network interfaces and IP addresses
+
+```console
+$ netstat
+$ ifconfig
+```
+
+- display listening ports and the programs that are using them
+
+```console
+$ netstat -tulnp
+```
+
+- check the process that is running on a specific port
+
+```console
+$ lsof -i :port
+
+$ netstat -tulnp | grep port
+```
+
+- configure network packet filtering rules, define the rules for incoming and outgoing packets
+
+```console
+$ iptables
+```
+
+- check the routing table
+
+```console
+$ route -n
+```
+
+- check the path that packets take to reach a destination
+
+```console
+$ tracepath www.google.com
+```
+
+- dump socket statistics
+
+```console
+$ ss -tulnp
+
+# -t for TCP, -u for UDP, -l for listening, -n for numeric, -p for process
+```
+
+- query internet name servers interactively
+
+```console
+$ nslookup www.google.com
+```
+
+- check the DNS records of a domain (DNS lookup utility)
+
+```console
+$ dig www.google.com
+```
+
+## SSH
+
+- **SSH (Secure Shell)**: communication protocol that provides a secure way to access a remote computer, communiucation between the host and the client is encrypted
+
+- default port for SSH is 22
+
+- `sshd` is the daemon that runs on the server which helps in establishing a secure connection over SSH
+
+- connect to a remote server
+
+```console
+$ ssh user@hostname
+$ ssh user@192.168.x.x
+```
+
+- connect to a remote server with a different port
+
+```console
+$ ssh -p port user@hostname
+```
+
+- copy files from local to remote server
+
+```console
+$ scp file.txt user@hostname:/path
+```
+
+- copy files from remote server to local
+
+```console
+$ scp user@hostname:/path/file.txt .
+```
+
+- generate rsa key pair
+
+```console
+$ ssh-keygen -t rsa
+```
+
+- copy the public key to the remote server
+
+```console
+$ ssh-copy-id user@hostname
+```
+
+- ssh security can be improved by disabling root login, changing the default port, using key-based authentication, and using a firewall
+
+## File System
+
+- **filesystem**: a method of organizing and storing files on a computer
+
+- **root directory**: the top-level directory in the filesystem, represented by `/`
+
+- **home directory**: the directory where a user's files are stored, represented by `~`
+
+- `/etc` directory contains configuration files
+
+  - `/etc/passwd` file contains information about the users on the system
+  - `/etc/shadow` file contains the encrypted passwords of the users
+  - `/etc/group` file contains information about the groups on the system
+  - `/etc/fsatb` file contains information about the filesystems on the system
+  - `/etc/hosts` file contains information about the hostname and IP address mappings
+  - `/etc/resolv.conf` file contains information about the DNS servers
+  - `/etc/hostname` file contains the hostname of the system
+  - `/etc/ssh` directory contains configuration files for the SSH server
+  - `/etc/cron.*` directories contain cronjobs
+
+- `/var` directory contains variable data files, such as logs, databases, and mail
+
+  - `/var/log` directory contains system log files
+  - `/var/mail` directory contains mail files
+
+- `/tmp` directory contains temporary files
+
+- `/dev` directory contains device files
+
+- `/home` directory contains the home directories of the users
+
+- `/bin` directory contains binary files and executable programs
+
+- `/sbin` directory contains system binaries and executable programs
+
+- `/lib` directory contains library files
+
+- `/usr` directory contains user binaries, libraries, and documentation
+
+- `/opt` directory contains optional software packages that are not part of the default installation
+
+- `/boot` directory contains boot files
+
+- `/proc` directory contains information about processes and system resources
+
+- swap space is used when the system runs out of physical memory, it is a portion of the hard disk that is used as virtual memory
