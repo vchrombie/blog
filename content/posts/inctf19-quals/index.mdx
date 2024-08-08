@@ -2,8 +2,12 @@
 title: InCTF 2019 Quals
 date: 2019-11-20
 tags:
-  - CTF
-  - Security
+  - ctf
+  - security
+  - hacking
+  - web
+  - forensics
+  - bi0s
 banner: ./images/0.jpg
 slug: "/inctf19-quals"
 ---
@@ -18,11 +22,9 @@ The process is simple, you need to register for it and need to participate in th
 
 This was the first time I am trying something like this. So, this Qualifier round will be tough thing for sure. But, I decided to give it a try. Why not! I have a lot of time in my final year. 😛
 
-
 ## Online Qualifier Round: 09/11/2019 - 10/11/2019
 
 The contest was for 36 hours and has challenges from Web, Forensics, pwn, RE and Crypto. I started with the Sanity checks flag submissions. 😄
-
 
 ### Web Exploitation
 
@@ -45,11 +47,11 @@ Author : Captain-kay
 
 The name and the source code gave me good idea that this is a cookie based challenge. I installed [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) and started analyzing the cookies. Not much of use I thought. Then I did refresh and I found something fishy. The page changed and earlier there was only one cookie in use, `PHPSESSID` but later there was another cookie too, `_THE_FLAG_IS`. But that was the flag. C'mon this wont be so easy!
 
-I knew cookies are stored as MD5 hash, tried to crack the cookie value using [HashBuster](https://github.com/s0md3v/Hash-Buster). I found something fishy but not really complete. 
+I knew cookies are stored as MD5 hash, tried to crack the cookie value using [HashBuster](https://github.com/s0md3v/Hash-Buster). I found something fishy but not really complete.
 
 ```
-vchrombie@gf ~/Desktop/InCTF/quals/web                [11:33:16] 
-> $ python3 hash.py -s 13b5bfe96f3e2fe411c9f66f4a582adf         
+vchrombie@gf ~/Desktop/InCTF/quals/web                [11:33:16]
+> $ python3 hash.py -s 13b5bfe96f3e2fe411c9f66f4a582adf
 _  _ ____ ____ _  _    ___  _  _ ____ ___ ____ ____
 |__| |__| [__  |__|    |__] |  | [__   |  |___ |__/
 |  | |  | ___] |  |    |__] |__| ___]  |  |___ |  \  v3.0
@@ -61,8 +63,8 @@ in
 This was interesting, seems it to be a part of the flag. The flag format is `inctf{_}`. The unhashed cookie gave the first two letters of the flag. Then I did a refresh of the page again. Suprise! The cookie changed, a different value now. I used the same method above.
 
 ```
-vchrombie@gf ~/Desktop/InCTF/quals/web                [11:33:44] 
-> $ python3 hash.py -s 4fdeddb85f44ee6ef00c9c40c2c802fe         
+vchrombie@gf ~/Desktop/InCTF/quals/web                [11:33:44]
+> $ python3 hash.py -s 4fdeddb85f44ee6ef00c9c40c2c802fe
 _  _ ____ ____ _  _    ___  _  _ ____ ___ ____ ____
 |__| |__| [__  |__|    |__] |  | [__   |  |___ |__/
 |  | |  | ___] |  |    |__] |__| ___]  |  |___ |  \  v3.0
@@ -90,7 +92,7 @@ a8655da06c5080d3f1eb6af7b514e309 : t}
 12470fe406d44017d96eab37dd65fc14 : es
 988287f7a1eb966ffc4e19bdbdeec7c3 : ki
 1a6269dd75567939534a8457c3cf6a43 : _!
-d41d8cd98f00b204e9800998ecf8427e : 
+d41d8cd98f00b204e9800998ecf8427e :
 2c3ba657da75eab82c88c429fbbf2207 : s_
 3b5e2fd0bdc8d3094bd676aa0744a726 : _u
 6f207f8b5dfe1eebac63467930df5189 : h3
@@ -105,11 +107,9 @@ inctf{coookies_!h31p_us_lot}
 
 This was a bit tough but interesting though. Thanks to [s0md3v](https://github.com/s0md3v) for the awesome tool, [Hash-Buster](https://github.com/s0md3v/Hash-Buster).
 
-
 ### Reversing Engineering
 
 I saw a python challenge and decided to try this up next.
-
 
 ```
 Python_revN
@@ -132,6 +132,7 @@ There were two funtions `push()` and `sage()` which were applied in a particular
 ```
 ALL=sage(push(x))
 ```
+
 where `x` is the flag input encoded to hex.
 
 The `push()` generates another string from the hex encoded flag string which has a unique encoding `type[(type.index(i)+3)%total_types]`. All I need to do is replace `+3` with `-3`. I wrote the `unpush()` function.
@@ -140,14 +141,13 @@ The `sage()` takes this string from `push()` and generated a list by slicing the
 
 ```
 >>> check = [959592808, 959852599, 960049253, 926430775, 892811314, 946419251, 929576502, 946419765, 909391664, 925972535, 892613940, 912864564, 12391]
->>> 
->>> 
+>>>
+>>>
 >>> bytes.fromhex(unpush(unsage(check))).decode('utf-8')
 'inctf{E4$Y_0N3_R1GHT!!?!}'
 ```
 
-Kitti! Quite simple and straight forward. 
-
+Kitti! Quite simple and straight forward.
 
 ### Forensics
 
@@ -170,8 +170,8 @@ Challenge file link: [chall.jpg](https://github.com/vchrombie/ctf-solutions/blob
 I was given an image file, [chall.jpg](https://github.com/vchrombie/ctf-writeups/blob/master/inctf19-quals/forensics/chall.jpg). Looked upon some image tools and tried to analyze the image and it's details. The `exiftool` gave me some good results but something was fishy in the details.
 
 ```
-vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:32:02] 
-> $ exiftool chall.jpg                                          
+vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:32:02]
+> $ exiftool chall.jpg
 ExifTool Version Number         : 10.80
 File Name                       : chall.jpg
 Directory                       : .
@@ -187,25 +187,24 @@ Image Height                    : 720
 ...
 ```
 
-Everything looked normal except te `Author`. I know that a Base64 value ends with a '='. I tried decoding it using [ascii2hex.com/](https://www.ascii2hex.com/). 
+Everything looked normal except te `Author`. I know that a Base64 value ends with a '='. I tried decoding it using [ascii2hex.com/](https://www.ascii2hex.com/).
 
 ![img](/images/3.png)
 
-WoW,  `starlord` is the author. Pretty impressive. I learned about `steghide` while going through the [bi0s wiki](http://wiki.bi0s.in). This tool needs a passphrase to hide something in a file and you need the same passphrase for extracting that. Well, I guess I am close to something.
+WoW, `starlord` is the author. Pretty impressive. I learned about `steghide` while going through the [bi0s wiki](http://wiki.bi0s.in). This tool needs a passphrase to hide something in a file and you need the same passphrase for extracting that. Well, I guess I am close to something.
 
 ```
-vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:42:28] 
-> $ steghide extract -sf chall.jpg                              
-Enter passphrase: 
+vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:42:28]
+> $ steghide extract -sf chall.jpg
+Enter passphrase:
 wrote extracted data to "flag.txt".
-                                                                 
-vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:42:34] 
-> $ cat flag.txt                                                
+
+vchrombie@gf ~/Desktop/InCTF/quals/forensics          [12:42:34]
+> $ cat flag.txt
 inctf{h1d1ng_d474_1n_0th3r_f1le5_1s_r34lly_c00l!!!!!}
 ```
 
 Kitti! The passphrase was `starlord`, the name of the author itself. This challenge was fun.
-
 
 ### Cryptography
 
@@ -223,11 +222,10 @@ File attached: Eyeless.zip
 
 Challenge file link: [Eyeless.zip](https://github.com/vchrombie/ctf-solutions/blob/master/inctf19-quals/crypto/Eyeless.zip)
 
-
 #### EOD
 
 That's it. I couldn't attempt the pwning and android challenges as the time was up. The straight effort of sleepless 36 hours is 611 points. I ended up being in the top 150 and got selected to attend the Amrita InCTF 2019 Finals in December, post my last semester.
- Looking forward to it.
+Looking forward to it.
 
 The experience of playing CTF for the first time was wonderful. I will write another blog post for the finals solves too.
 

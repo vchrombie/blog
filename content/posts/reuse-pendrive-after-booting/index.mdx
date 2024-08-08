@@ -2,7 +2,7 @@
 title: Re-Use your pen-drive after using it as a Bootable device
 date: 2017-07-11
 tags:
-  - Tech
+  - tech
 slug: "/reuse-pendrive-after-booting"
 ---
 
@@ -18,7 +18,7 @@ First of all, start administrator's command prompt:
 
 - Type `cmd` in the search tab
 - Press Ctrl+Shift+Enter to open the admin cmd
-Open the utility called diskpart. I mean, enter `diskpart` command.
+  Open the utility called diskpart. I mean, enter `diskpart` command.
 
 `DISKPART> `prompt should appear.
 
@@ -32,7 +32,7 @@ Type the command, where `#` is your USB disk number. Just look for the right cap
 List all partitions on it.
 
 `SELECT PARTITION #`
-For every one of them type:  , where `#` is the number of partition and `DELETE PARTITION`.
+For every one of them type: , where `#` is the number of partition and `DELETE PARTITION`.
 
 `LIST PARTITION`
 Now check there aren't any of partitions left. If there aren't any create one partition.

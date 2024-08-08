@@ -1,8 +1,16 @@
 ---
 title: Continuous Delivery with GitHub Actions
 date: 2021-02-16
-tags: 
-  - GrimoireLab
+tags:
+  - chaoss
+  - grimoirelab
+  - bitergia
+  - github
+  - travis
+  - actions
+  - ci/cd
+  - gha
+  - elasticsearch
 slug: "cd-with-gha"
 ---
 
@@ -15,6 +23,7 @@ We were planning to migrate to using Poetry for managing the GrimoireLab project
 We need to install [Poetry](https://python-poetry.org/docs/#installation), and later we can use the below commands to convert any project to a poetry-based project.
 
 `poetry init` would initialize a project, you are expected to fill the required fields, and later generates the _pyproject.toml_ file. `poetry add package_name` would add the _package_name_ as the main dependency, whereas `poetry add -D package_name` would add the _package_name_ as a developer dependency.
+
 ```bash
 $ poetry init
 $ poetry add `cat requirements.txt`
@@ -24,21 +33,23 @@ $ poetry add -D `cat requirements_tests.txt`
 You can add additional fields which might be needed according to the project like classifiers, packages, license in the _pyproject.toml_ file. You can find the whole list in the documentation, [The pyproject.toml file](https://python-poetry.org/docs/pyproject/).
 
 Once the pyproject.toml is configured correctly, you can install the project using `poetry install`. This would create a virtual environment and it can be activated using `poetry shell`.
+
 ```bash
 $ poetry install
 $ poetry shell
 ```
 
 We can build the package using `poetry build`, this would create the wheel and tar packages in the `dist` folder. Later, we can use `poetry publish` to publish these wheel packages to PyPI directly. Make sure you have configured the PyPI token accordingly.
+
 ```bash
 $ poetry build
 $ poetry publish
 ```
 
 Now that we have the required setup and the steps, it is quite easy to create a github actions for publising the packages to PyPI. We created the below github action for the same purpose.
+
 ```yaml
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -46,7 +57,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
       - name: Install poetry
         run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
       - name: Build distributions
@@ -70,7 +81,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
       - name: Install poetry
         run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
       - name: Configure pypi credentials
@@ -86,11 +97,11 @@ The action needs to be triggered whenever a release is made. A release tag (eg. 
 ```yaml
 on:
   push:
-    tags: 
-      - '*.*.*'
+    tags:
+      - "*.*.*"
 ```
 
 We have tested this on a couple of repositories and it worked like a charm. We have some plans to expand this to create a full automatic release workflow system to manage and create releases. I will come up with another blog post soon about it.
 
-~ Venu 
+~ Venu
 👋
