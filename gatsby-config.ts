@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://vchrombie.github.io/blog`,
     siteDescription: `Venu's Blog.`,
     siteLanguage: `en`,
-    siteImage: `/banner.jpeg`,
+    siteImage: `/banner.jpg`,
     author: `@vchrombie`,
   },
   trailingSlash: `never`,
