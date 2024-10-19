@@ -1,0 +1,124 @@
+---
+title: Amazon SDE-1 Interview 2024
+date: 2024-10-19
+tags:
+  - interview
+  - job search
+  - algorithms
+  - amazon
+  - system design
+slug: "amazon-interview-2024"
+---
+
+Recently, I went through the Amazon interview process for a Software Development Engineer (SDE-1) New Graduate role. Here's a detailed timeline of my Amazon interview process, which spanned nearly a month, involving both technical assessments and behavioral evaluations.
+
+## Timeline Overview
+
+- **September 13**: I received the online assessment (OA) "Fungible SDEI FT Invitation Email" invitation from Amazon. The OA typically includes a coding assessment, a work style assessment, a work simulation.
+- **September 15**: I completed the OA. The coding problems required a solid understanding of algorithms and data structures. Additionally, there were behavioral questions designed to assess how well I aligned with Amazon's culture.
+- **September 20**: I received the result of the OA, which indicated that I had passed. I was also asked for my availability for an interview during the following week.
+- **September 23**: Amazon reached out again, requesting my availability for a much later week. It seemed like there was some scheduling adjustment going on.
+- **September 26**: I was asked once more about my availability, this time for an even later week. It appeared that the interview schedule was being pushed further out.
+- **September 30:** I finally received confirmation that my interview was scheduled for **October 10**, with three rounds in the final loop.
+- **October 10**: I had my final loop interviews, which included a bar raiser round, a coding round, and a low-level design (LLD) round.
+- **October 18**: I received the feedback after following up with the HR.
+
+## Online Assessment
+
+During my OA, I encountered two challenging coding problems that tested my understanding of algorithms, string manipulation, and pattern recognition. Here’s a short breakdown of the questions and my approach to solving them.
+
+### Code Question 1: Symmetrical Name Encoding
+
+This problem involved rearranging the characters in a symmetrical string based on specific rules:
+
+- The rearranged string should still be symmetrical.
+- It should be the lexicographically smallest possible permutation of the original string.
+
+For example, given the string `babab`, the smallest symmetrical string would be `ababa`.
+
+### Code Question 2: Genome Sequencing (Anagram-based DNA Sequence Pairs)
+
+The second problem was more focused on string manipulation and pattern matching. The task was to determine if two DNA strings could become anagrams by removing exactly one character from each string.
+
+For example:
+- dna1: `safddadfs`
+- dna2: `famafmss`
+
+By removing `d` from `dna1` and `m` from `dna2`, the remaining sequences can form anagrams, so this pair is considered "special."
+
+## Final Loop Interviews
+
+The final loop consisted of three rounds, including technical and behavioral evaluations:
+
+### Round 1: Bar Raiser Round
+
+- Focused on behavioral questions based on Amazon’s leadership principles.
+- I was asked four behavioral questions, each followed by in-depth follow-ups to dive deeper into my experiences.
+
+### Round 2: Coding Round
+
+Tasked with solving two coding problems within 30 minutes each.
+
+- Image Rotation: Rotate a 2D matrix (image) 90 degrees clockwise.
+
+Given a photo app that needs the functionality to rotate an image (represented as a 2D matrix of pixels) 90 degrees clockwise.
+
+Example:
+Input matrix:
+```
+1  2  3  4
+5  6  7  8
+9 10 11 12
+13 14 15 16
+```
+After rotation:
+```
+13  9  5  1
+14 10  6  2
+15 11  7  3
+16 12  8  4
+```
+
+- User Login Tracking: Implement methods for tracking website visitors and retrieving the oldest one-time visitor.
+
+This question is about building a login system for a shopping website that tracks customers. You need to implement two functions:
+
+`newUserLogin(username)`: This method is called whenever a user logs in.
+
+`getOldestOneTimeVisitingUser()`: This method returns the username of the oldest customer who has visited the website exactly once.
+
+Example:
+```
+newUserLogin("Alice")
+newUserLogin("Bob")
+newUserLogin("Alice")
+newUserLogin("Charlie")
+newUserLogin("Bob")
+newUserLogin("David")
+getOldestOneTimeVisitingUser() -> "Charlie"
+```
+
+### Round 3: Low-Level Design (LLD)
+
+- Tasked with designing a package manager system that handles dependencies among software packages.
+
+Design a system to install software packages. Some packages depend on others, meaning they cannot be installed until certain other packages are installed first. The goal is to define what a package looks like and implement a solution that determines the installation order for all packages based on their dependencies.
+
+Example:
+- Package A depends on B, C
+- Package B depends on D, E
+- Package F depends on G
+
+You need to write an algorithm to install the packages in the correct order, respecting these dependencies.
+
+- Followed by two additional behavioral questions to assess my approach to problem-solving.
+
+## Outcome
+
+After the final loop interviews, I received feedback on October 18, after following up with the HR. Unfortunately, I was not selected to move forward in the process. There was no specific feedback provided on my performance, but I appreciated the opportunity to go through the Amazon interview process and gain valuable experience.
+
+## Reflections
+
+The Amazon interview process is known for its emphasis on leadership principles (LPs), system design, and coding skills. Make sure to prepare thoroughly for these aspects of the interview.
+
+Good luck!
