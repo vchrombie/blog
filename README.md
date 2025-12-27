@@ -9,13 +9,14 @@ Comments with [giscus](https://giscus.app//), https://github.com/vchrombie/comme
 ## Setup
 
 Prerequisites
+
 - [nvm](https://github.com/nvm-sh/nvm)
 - [node](https://nodejs.org/en/) & [npm](https://www.npmjs.com/) (you can install using nvm)
   ```shell
-  $ nvm install 16
+  $ nvm install 18
   $ node --version && npm --version
-    v16.13.2
-    8.1.2
+    v18.20.8
+    10.8.2
   ```
 - [gatsby](https://www.gatsbyjs.com/)
   ```shell
@@ -23,6 +24,7 @@ Prerequisites
   ```
 
 Build the site locally
+
 ```shell
 $ git clone https://github.com/vchrombie/blog
 $ cd blog/
@@ -31,11 +33,13 @@ $ gatsby develop
 ```
 
 Clean the cache
+
 ```shell
 $ gatsby clean
 ```
 
 Deploy to github pages
+
 ```shell
 $ npm run deploy
 ```
@@ -49,6 +53,7 @@ $ npm install @giscus/react
 ```
 
 `node_modules/@lekoarts/gatsby-theme-minimal-blog/src/components/post.tsx`
+
 ```tsx
 import {Giscus} from "@giscus/react";
 
@@ -72,7 +77,7 @@ import {Giscus} from "@giscus/react";
       lang="en"
       loading="lazy"
     />
-    
+
     <PostFooter post={post} />
   </Layout>
 ```
@@ -84,6 +89,7 @@ $ npm install gatsby-plugin-google-gtag
 ```
 
 `gatsby-config.ts`
+
 ```ts
 plugins: [
   {
@@ -94,7 +100,7 @@ plugins: [
       ],
     },
   },
-]
+];
 ```
 
 ### [gh-pages](https://github.com/tschaub/gh-pages)
@@ -104,13 +110,15 @@ $ npm install gh-pages --save-dev
 ```
 
 `gatsby-config.ts`
+
 ```ts
 const config: GatsbyConfig = {
   pathPrefix: `/blog`,
-}
+};
 ```
 
 `package.json`
+
 ```json
 {
   "scripts": {
